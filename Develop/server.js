@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { us
 //from activity 14
 
 
-db.Workout.create({ name: "Campus Workout" })
+db.Workout.create({ name: "Workout" })
   .then(dbWorkout => {
     console.log(dbWorkout);
   })
@@ -34,7 +34,7 @@ app.post("/submit", ({body}, res) => {
     });
 });
 
-app.get("/exercises", (req, res) => {
+app.get("/exercise", (req, res) => {
   db.Book.find({})
     .then(dbExercise => {
       res.json(dbExercise);
