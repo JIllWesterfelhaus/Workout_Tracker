@@ -12,42 +12,42 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-//from activity 14
+//from activity 14, need to change names
 
 
-db.Workout.create({ name: "Workout" })
-  .then(dbWorkout => {
-    console.log(dbWorkout);
+/*db.Library.create({ name: "Campus Library" })
+  .then(dbLibrary => {
+    console.log(dbLibrary);
   })
   .catch(({message}) => {
     console.log(message);
   });
 
 app.post("/submit", ({body}, res) => {
-  db.Exercise.create(body)
-    .then(({_id}) => db.Workout.findOneAndUpdate({}, { $push: { Exercises: _id } }, { new: true }))
-    .then(dbWorkout => {
-      res.json(dbWorkout);
+  db.Book.create(body)
+    .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
+    .then(dbLibrary => {
+      res.json(dbLibrary);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/exercise", (req, res) => {
+app.get("/books", (req, res) => {
   db.Book.find({})
-    .then(dbExercise => {
-      res.json(dbExercise);
+    .then(dbBook => {
+      res.json(dbBook);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/workout", (req, res) => {
-  db.Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
+app.get("/library", (req, res) => {
+  db.Library.find({})
+    .then(dbLibrary => {
+      res.json(dbLibrary);
     })
     .catch(err => {
       res.json(err);
@@ -55,19 +55,16 @@ app.get("/workout", (req, res) => {
 });
 
 app.get("/populated", (req, res) => {
-  db.Workout.find({})
-    .populate("exercises")
-    .then(dbWorkout => {
-      res.json(dbWorkout);
+  db.Library.find({})
+    .populate("books")
+    .then(dbLibrary => {
+      res.json(dbLibrary);
     })
     .catch(err => {
       res.json(err);
     });
-});
+});*/
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
-
-
-
