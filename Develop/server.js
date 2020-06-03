@@ -1,53 +1,47 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const PORT = process.env.PORT || 3000;
-
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-//from activity 14, need to change names
-
-
-/*db.Library.create({ name: "Campus Library" })
-  .then(dbLibrary => {
-    console.log(dbLibrary);
+db.Workout.create({ name: "Workout" })
+  .then(dbWorkout => {
+    console.log(dbWorkout);
   })
   .catch(({message}) => {
     console.log(message);
   });
 
 app.post("/submit", ({body}, res) => {
-  db.Book.create(body)
-    .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
-    .then(dbLibrary => {
-      res.json(dbLibrary);
+  db.Exercise.create(body)
+    .then(({_id}) => db.Workout.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/books", (req, res) => {
-  db.Book.find({})
-    .then(dbBook => {
-      res.json(dbBook);
+app.get("/exercises", (req, res) => {
+  db.Exercise.find({})
+    .then(dbExercise => {
+      res.json(dbExercise);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/library", (req, res) => {
-  db.Library.find({})
-    .then(dbLibrary => {
-      res.json(dbLibrary);
+app.get("/workout", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
@@ -55,15 +49,15 @@ app.get("/library", (req, res) => {
 });
 
 app.get("/populated", (req, res) => {
-  db.Library.find({})
-    .populate("books")
-    .then(dbLibrary => {
-      res.json(dbLibrary);
+  db.Workout.find({})
+    .populate("exercises")
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
-});*/
+});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
