@@ -19,7 +19,7 @@ db.Workout.create({ name: "Workout" })
 
 app.post("/submit", ({body}, res) => {
   db.Exercise.create(body)
-    .then(({_id}) => db.Workout.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
+    .then(({_id}) => db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
