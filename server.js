@@ -10,7 +10,10 @@ app.use(express.static("public"));
 
 //mongoose.connect in seed.js
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", 
-{ useNewUrlParser: true });
+{ useNewUrlParser: true,
+  //added line 15
+  useFindAndModify: false
+});
 
 //async/await? define db elsewhere?
 //why need to define db if created here?
