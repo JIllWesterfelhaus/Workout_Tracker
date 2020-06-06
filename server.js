@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
-
+//async/await; define db elsewhere
 db.Workout.create({ name: "Workout" })
   .then(dbWorkout => {
     console.log(dbWorkout);
