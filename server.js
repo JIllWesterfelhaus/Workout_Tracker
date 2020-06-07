@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-//mongoose.connect in seed.js
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", 
+//mongoose.connect in seed.js; changed URI to URL
+mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/populate", 
 { useNewUrlParser: true,
   //added line 15
   useFindAndModify: false
