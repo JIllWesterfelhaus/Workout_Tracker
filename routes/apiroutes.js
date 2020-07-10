@@ -1,5 +1,12 @@
 const router = require("express").Router();
 const Workout = require("../models/models")
+module.exports = function(req, res, next) {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+  return res.status(404).send('Invalid ID.');
+  
+  next();
+  }
+
 
 router.post("/api/workouts",(req,res)=>{
     Workout.create()
@@ -11,17 +18,6 @@ router.post("/api/workouts",(req,res)=>{
     });
 }) 
 
-router.put("/api/workouts/:id",({body,params},res)=>{
-    Workout.findByIdAndUpdate(params.id,
-    {$push:{exercises:body}}
-        )
-        .then(dbWorkout => {
-            console.log(dbWorkout);
-          })
-          .catch(({message}) => {
-            console.log(message);
-          });
-})
 
 router.get("/api/workouts",(req,res)=>{
     Workout.find()
@@ -52,6 +48,19 @@ router.delete("/api/workouts",({body},res)=>{
         console.log(message);
       });
 })
+
+router.put("/api/workouts/:id",({body,params},res)=>{
+  Workout.findByIdAndUpdate(params.id,
+  {$push:{exercises:body}}
+      )
+      .then(dbWorkout => {
+          console.log(dbWorkout);
+        })
+        .catch(({message}) => {
+          console.log(message);
+        });
+})
+
 
 module.exports = router
 
