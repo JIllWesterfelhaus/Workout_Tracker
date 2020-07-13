@@ -46,7 +46,7 @@ const WorkoutSchema = new Schema({
             }
         }
     ]
-    },
+},
     //enable virtualization to happen with conversion to JSON
     {
         toJSON: {
@@ -55,7 +55,7 @@ const WorkoutSchema = new Schema({
     }
 )
 // the virtual total duration uses the reduce method to find the accumulation of the duration of exercises
-WorkoutSchema.virtual("totalDuration").get(function() {
+WorkoutSchema.virtual("totalDuration").get(function () {
     return this.exercises.reduce((total, exercise) => {
         return total + exercise.duration
     }, 0)
